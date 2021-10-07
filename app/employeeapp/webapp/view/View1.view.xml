@@ -1,0 +1,250 @@
+<mvc:View
+    controllerName="com.employeeapp.employee.employeeapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+    displayBlock="true" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar"
+    xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core">
+            <Page >
+				<tnt:ToolPage id="toolPage">
+                	<tnt:header>
+                        <tnt:ToolHeader>
+                            <Button
+                                id="sideNavigationToggleButton"
+                                icon="sap-icon://menu2"
+                                type="Transparent"
+                                press=".onSideNavButtonPress">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                </layoutData>
+                            </Button>
+                            <ToolbarSpacer width="20rem" />
+                            <Title text="{i18n>title}" />
+                            <tnt:ToolHeaderUtilitySeparator />
+                            <ToolbarSpacer>
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px" />
+                                </layoutData>
+                            </ToolbarSpacer>
+                            <Button text="Action1" type="Transparent">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" />
+                                </layoutData>
+                            </Button>
+                            <Button text="Action2" type="Transparent">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" />
+                                </layoutData>
+                            </Button>
+                            <Button text="Action Button" type="Transparent">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" />
+                                </layoutData>
+                            </Button>
+                            <Button text="Primary Button" type="Emphasized">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" />
+                                </layoutData>
+                            </Button>
+                        </tnt:ToolHeader>
+                    </tnt:header>
+					<tnt:sideContent>
+                        <tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+                            <tnt:item>
+                                <tnt:NavigationList>
+                                    <tnt:NavigationListItem text="Dashboard" icon="sap-icon://background" />
+                                </tnt:NavigationList>
+                            </tnt:item>
+                            
+                        </tnt:SideNavigation>
+                        
+                    </tnt:sideContent>
+                    <tnt:mainContents>
+                            <NavContainer id="pageContainer" initialPage="page1" class="sapUiSizeCompact">
+                                <pages>
+                                   <Page showHeader="false" id="page1">
+                                        <content> 
+                                            <fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" header="Advanced Filter Options">
+                                                <fb:filterGroupItems>
+                                                    <fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="From Date" partOfCurrentVariant="true" mandatory="true" visibleInFilterBar="true">
+                                                        <fb:control>
+                                                            <DatePicker/>
+                                                        </fb:control>
+                                                    </fb:FilterGroupItem>
+
+                                                    <fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="To Date" labelTooltip="Tooltip Example" mandatory="true" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                                        <fb:control>
+                                                            <DatePicker/>
+                                                        </fb:control>
+                                                    </fb:FilterGroupItem>
+
+                                                    <fb:FilterGroupItem groupName="G1" groupTitle="Group1" name="A1" label="Company" labelTooltip="Tooltip GroupItem Example">
+                                                        <fb:control>
+                                                            <Input type="Text"/>
+                                                        </fb:control>
+                                                    </fb:FilterGroupItem>
+
+                                                    <fb:FilterGroupItem groupName="G1" groupTitle="Group1" name="B1" label="Customer">
+                                                        <fb:control>
+                                                            <Input type="Text"/>
+                                                        </fb:control>
+                                                    </fb:FilterGroupItem>
+
+                                                    <fb:FilterGroupItem groupName="G2" groupTitle="Group2" name="A2" label="Supplier" labelTooltip="Tooltip GroupItem Example">
+                                                        <fb:control>
+                                                            <Input type="Text"/>
+                                                        </fb:control>
+                                                    </fb:FilterGroupItem>
+
+                                                    <fb:FilterGroupItem groupName="G2" groupTitle="Group2" name="B2" label="Category">
+                                                        <fb:control>
+                                                            <Input type="Text"/>
+                                                        </fb:control>
+                                                    </fb:FilterGroupItem>
+                                                </fb:filterGroupItems>
+                                            </fb:FilterBar>
+                                            <Panel expandable="true" expanded="true" headerText="Preset KPI's" >
+                                                <content>
+                                                
+                                                    <l:Grid hSpacing="1" vSpacing="1" class="sapUiTinyMargin" defaultSpan="XL2 L2 M6 S12">
+                                                        <CustomListItem type="Active" press="onPressTile" class="sapMGT"> 
+                                                            <VBox alignItems="Center">
+                                                                <HBox width="100%"  justifyContent="Center" class="sapMKPITitleBg"><Title class="sapMKPITitleBg sapUiTinyMarginTop" text="Individual RFQ"/></HBox>
+                                                                <HBox class="sapUiSmallMargin">
+                                                                    <VBox>
+                                                                        <ObjectAttribute title="Total" text="35" />
+                                                                        <ObjectAttribute title="New Today" text="4" />
+                                                                    </VBox>
+                                                                    <ToolbarSeparator />
+                                                                    <VBox>
+                                                                        <ObjectNumber number="8"/>
+                                                                        <Label text="Pending"/>
+                                                                    </VBox>
+                                                                </HBox>
+                                                            </VBox>
+                                                            <layoutData>
+                                                                <l:GridData span="XL3 L3 M6 S12"/>
+                                                            </layoutData>
+                                                        </CustomListItem >
+                                                        <CustomListItem type="Active" press="onPressTile" class="sapMGT"> 
+                                                            <VBox alignItems="Center">
+                                                                <HBox width="100%"  justifyContent="Center" class="sapMKPITitleBg"><Title class="sapMKPITitleBg sapUiTinyMarginTop" 
+                                                                text="Matrix RFQ's"/></HBox>
+                                                                <HBox class="sapUiSmallMargin">
+                                                                    <VBox>
+                                                                        <ObjectAttribute title="Total" text="15" />
+                                                                        <ObjectAttribute title="New Today" text="2" />
+                                                                    </VBox>
+                                                                    <ToolbarSeparator />
+                                                                    <VBox>
+                                                                        <ObjectNumber number="7"/>
+                                                                        <Label text="Pending"/>
+                                                                    </VBox>
+                                                                </HBox>
+                                                            </VBox>
+                                                            <layoutData>
+                                                                <l:GridData span="XL3 L3 M6 S12"/>
+                                                            </layoutData>
+                                                        </CustomListItem >
+                                                        <CustomListItem type="Active" press="onPressTile" class="sapMGT"> 
+                                                            <VBox alignItems="Center">
+                                                                <HBox width="100%"  justifyContent="Center" class="sapMKPITitleBg">
+                                                                    <Title class="sapMKPITitleBg sapUiTinyMarginTop" text="Matrix RFQ's"/>
+                                                                </HBox>
+                                                                <HBox width="100%" class="sapUiSmallMargin" alignItems="Center" justifyContent="SpaceAround">
+                                                                    <Title text="TYPE A" />
+                                                                    <VBox>
+                                                                        <ObjectStatus title="Series 1" text="32" state="Success"/>
+                                                                        <ObjectStatus title="Series 2" text="42" state="Warning"/>
+                                                                        <ObjectStatus title="Series 3" text="52" state="Error"/>
+                                                                    </VBox>
+                                                                </HBox>
+                                                            </VBox>
+                                                            <layoutData>
+                                                                <l:GridData span="XL3 L3 M6 S12"/>
+                                                            </layoutData>
+                                                        </CustomListItem >
+                                                        <CustomListItem type="Active" press="onPressTile" class="sapMGT"> 
+                                                            <VBox alignItems="Center">
+                                                                <HBox width="100%"  justifyContent="Center" class="sapMKPITitleBg">
+                                                                    <Title class="sapMKPITitleBg sapUiTinyMarginTop" text="On Time Percentage"/>
+                                                                </HBox>
+                                                                <HBox width="100%" class="sapUiSmallMargin" alignItems="Center" justifyContent="SpaceAround">
+                                                                    <Title text="TYPE A" />
+                                                                    <VBox>
+                                                                        <ObjectStatus title="Series 1" text="32" state="Success"/>
+                                                                        <ObjectStatus title="Series 2" text="42" state="Warning"/>
+                                                                    </VBox>
+                                                                </HBox>
+                                                            </VBox>
+                                                            <layoutData>
+                                                                <l:GridData span="XL3 L3 M6 S12"/>
+                                                            </layoutData>
+                                                        </CustomListItem >
+                                                    </l:Grid> 
+                                                </content>
+                                            </Panel>
+                                            <Table id="idProductsTable"
+                                                inset="false"
+                                                items="{
+                                                    path: '/Books'
+                                                }">
+                                                <columns>
+                                                    <Column hAlign="Begin" >
+                                                        <Text text="ID" />
+                                                    </Column>
+                                                    <Column
+                                                        minScreenWidth="Tablet"
+                                                        demandPopin="true" >
+                                                        <Text text="Title" />
+                                                    </Column>
+                                                    <Column
+                                                        minScreenWidth="Desktop"
+                                                        demandPopin="true"
+                                                        hAlign="End">
+                                                        <Text text="Stock" />
+                                                    </Column>
+                                                    <Column
+                                                        minScreenWidth="Desktop"
+                                                        demandPopin="true"
+                                                        hAlign="Center">
+                                                        <Text text="Title" />
+                                                    </Column>
+                                                    <Column
+                                                        hAlign="Center">
+                                                        <Text text="Stock" />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem type="Navigation" press="onListItemPress">
+                                                        <cells>
+                                                            <ObjectStatus icon="sap-icon://information"
+			                                                    state="Warning" 
+                                                                text="{ID}"/>
+                                                            <ObjectAttribute active="true"
+                                                                text="{title}" />
+                                                            <ObjectNumber
+                                                                number="{stock}" />
+                                                            <Text
+                                                                text="{title}" />
+                                                            <ObjectStatus
+                                                                text="In Progress"
+                                                                inverted="true"
+                                                                icon="sap-icon://sys-enter-2"
+                                                                state="Success" />
+                                                            
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </content>
+                                   </Page>
+                                </pages>
+                            </NavContainer>
+                    </tnt:mainContents>
+				</tnt:ToolPage>
+
+                <!-- Fragment for showing Side Content when clicked on table item, make  idSideContentBox visible true --> 
+                <HBox id="idSideContentBox" visible="false" justifyContent="End" height="100%">
+                    <core:Fragment id="idSideContent" fragmentName="com.employeeapp.employee.employeeapp.fragments.SideContent" type="XML" />
+                </HBox>
+                </Page> 
+</mvc:View>

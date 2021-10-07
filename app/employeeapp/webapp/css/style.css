@@ -1,0 +1,15 @@
+/* Enter your custom styles here */
+.tileLayout {
+	float: left;
+}
+.sapMKPITitleBg {
+    background: #0183b4;
+}
+.sapMKPITitleColor {
+    color: #fff;
+    text-shadow: #aaa;
+}
+.sapSideContentborder {
+    border: 1px solid transparent;
+    box-shadow: 0 0 0 0.0625rem rgb(0 0 0 / 10%), 0 0.125rem 0.5rem 0 rgb(0 0 0 / 10%)
+}

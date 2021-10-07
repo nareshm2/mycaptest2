@@ -1,0 +1,126 @@
+_schema-version: '3.1'
+ID: mycap_launchpad2
+description: A simple CAP project.
+version: 1.0.0
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+        - cp -r db/data gen/srv/srv/data
+modules:
+#-------------------------------------------------- CDS Catalog Service
+  - name: mycap_launchpad2-srv
+    type: nodejs
+    path: gen/srv
+    provides:
+      - name: srv-api   # required by consumers of CAP services (for example, approuter)
+        properties:
+          srv-url: '${default-url}'
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: uaa_mycaplaunchpad2
+    #build-parameters:
+    #  ignore: ["node_modules/"]    
+#-------------------------------------------------- Destination Content
+  - name: mycap_launchpad2-destination-content
+    type: com.sap.application.content
+    requires:
+    - name: uaa_mycaplaunchpad2
+      parameters:
+        service-key:
+          name: uaa_mycaplaunchpad2-key
+    - name: mycap_launchpad2-repo-host
+      parameters:
+        service-key:
+          name: mycap_launchpad2-repo-host-key
+    - name: srv-api
+    - name: mycap_launchpad2-dest-srv
+      parameters:
+        content-target: true        
+    parameters:
+      content:
+        subaccount:
+          destinations:
+          - Authentication: OAuth2UserTokenExchange
+            Name: mycap_app_launchpad2-srv
+            TokenServiceInstanceName: uaa_mycaplaunchpad2
+            TokenServiceKeyName: uaa_mycaplaunchpad2-key
+            URL: '~{srv-api/srv-url}'
+            sap.cloud.service: com-employee-employee
+          - Name: mycap_launchpad2-repo-host
+            ServiceInstanceName: mycap_launchpad2-repo-host
+            ServiceKeyName: mycap_launchpad2-repo-host-key
+            sap.cloud.service: com-employee-employee
+          - Authentication: OAuth2UserTokenExchange
+            Name: uaa_mycaplaunchpad2
+            ServiceInstanceName: uaa_mycaplaunchpad2
+            ServiceKeyName: uaa_mycaplaunchpad2-key
+            sap.cloud.service: com-employee-employee
+          existing_destinations_policy: update    
+    build-parameters:
+      no-source: true
+
+#-------------------------------------------------- UI Fiori Deployer
+  - name: mycap_launchpad2-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: mycap_launchpad2-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - comemployeeappemployeeemployeeapp.zip
+          name: comemployeeappemployeeemployeeapp
+          target-path: resources/
+
+#-------------------------------------------------- UI5 Module
+  - name: comemployeeappemployeeemployeeapp
+    type: html5
+    path: app/employeeapp
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - 'npm run build:cf'
+      supported-platforms: []
+    requires:
+      - name: uaa_mycaplaunchpad2
+        # - name: srv-api
+        #   group: destinations
+        #   properties:
+        #     forwardAuthToken: true
+        #     name: srv_api
+        #     url: '~{srv-url}'
+resources:
+  - name: mycap_launchpad2-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: mycap_launchpad2-repo-host
+      service-plan: app-host
+
+  - name: mycap_launchpad2-dest-srv
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+      service: destination
+      service-name: mycap_launchpad2-dest-srv
+      service-plan: lite
+
+  - name: uaa_mycaplaunchpad2
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application

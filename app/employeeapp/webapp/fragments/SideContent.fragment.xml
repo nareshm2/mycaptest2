@@ -1,0 +1,81 @@
+<core:FragmentDefinition
+   xmlns="sap.m" xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" xmlns:lf="sap.ui.layout.form" >
+<VBox width="30rem" height="100%" class="sapSideContentborder"  backgroundDesign="Solid">
+    <items>
+        <Bar>
+            <contentLeft>
+                <Button icon="sap-icon://feeder-arrow" press="onSideContentCollapse"/>
+            </contentLeft>
+            <contentMiddle>
+                <SegmentedButton width="25rem">
+                    <items>
+                        <SegmentedButtonItem text="Part Info" key="kids" />
+                        <SegmentedButtonItem text="Comments(3)" />
+                    </items>
+                </SegmentedButton>
+            </contentMiddle>
+        </Bar>
+        <lf:SimpleForm minLabelWidth="70%" layout="ResponsiveLayout" adjustLabelSpan="false" columnsL="1" columnsXL="1" columnsM="1" labelSpanXL="5" labelSpanL="5" labelSpanM="5" 
+            emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0">
+                <lf:content>
+                    <Label text="Title (see binding)" >
+                    </Label>
+                    <Text text="{title}" >
+                    </Text>
+                    <Label text="RFQ" >
+                    </Label>
+                    <Text text="GA-556464-02122191" />
+                    <Label text="Part Number" />
+                    <Text text="GA-556464-02122191" />
+                    <Label text="Due Date" />
+                    <Text text="12/07/2021" />
+                    <Label text="Type" />
+                    <Text text="Simple Quote" />
+                    <Label text="Description" />
+                    <Text text="PNG Cummings Engine" />
+                    <Label text="Division" />
+                    <Text text="Peter Built" />
+                    <Label text="BID Option" />
+                    <Switch type="AcceptReject" state="true"></Switch>
+                </lf:content>
+            </lf:SimpleForm>
+                <Table>
+                    <columns>
+                        <Column hAlign="Begin">
+                            <Label text="Price Info" design="Bold"/>
+                        </Column>
+                        <Column hAlign="End">
+                            <Button text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem> 
+                            <cells>
+                                <Text text="Unit Price"/>
+                                <Input value="0.0"/>
+                            </cells>
+                        </ColumnListItem>
+                        <ColumnListItem> 
+                            <cells>
+                                <Text text="UOM"/>
+                                <Select selectedKey="E" width="100%">
+                                    <items>
+                                        <core:Item text="Each" key="E" />
+                                    </items>
+                                </Select>
+                            </cells>
+                        </ColumnListItem>
+                </items>
+            </Table>
+            <Bar design="Footer">
+                <contentMiddle>
+                    <Button text="Save and Submit" type="Accept"/>
+                    <Button text="Submit Draft" />
+                </contentMiddle>
+            </Bar>
+    </items>
+</VBox>
+</core:FragmentDefinition>

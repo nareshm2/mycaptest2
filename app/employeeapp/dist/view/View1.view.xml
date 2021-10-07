@@ -1,0 +1,39 @@
+<mvc:View
+    controllerName="com.employeeapp.employee.employeeapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+                        <Table id="tablelist" items="{path:'/Books'}">
+                            <columns>
+                                <Column >
+                                    <Label text="ID"/>
+                                </Column>
+                                <Column >
+                                    <Label text="Title"/>
+                                </Column>
+                                <Column >
+                                    <Label text="Stock"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{ID}" />
+                                        <Text text="{title}" />
+                                        <Text text="{stock}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

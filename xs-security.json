@@ -1,0 +1,32 @@
+{
+  "xsappname": "comemployeeappemployee",
+  "tenant-mode": "dedicated",
+  "description":"Security profile of the called application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Display",
+      "description": "UAA Display"
+    },
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }    
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "POC_EMP_Role",
+      "description": "UAA POC_EMP_Role",
+      "scope-references": [
+        "$XSAPPNAME.Display"
+      ]
+    },
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }    
+  ]
+}
